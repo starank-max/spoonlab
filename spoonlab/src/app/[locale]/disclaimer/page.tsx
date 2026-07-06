@@ -1,0 +1,172 @@
+import { Breadcrumb } from "@/components/layout/breadcrumb/Breadcrumb";
+import { SITE } from "@/lib/constants";
+
+export default function DisclaimerPage() {
+  return (
+    <div className="bg-cream min-h-screen">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Breadcrumb */}
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Food Safety Disclaimer" },
+          ]}
+          className="mb-8"
+        />
+
+        {/* Page header */}
+        <h1 className="font-display text-4xl sm:text-5xl text-ink font-bold tracking-tight mb-2">
+          Food Safety Disclaimer
+        </h1>
+        <p className="text-sm text-stone mb-10">Last updated: July 7, 2026</p>
+
+        {/* Content */}
+        <div className="prose prose-stone prose-lg max-w-none prose-headings:font-display prose-headings:text-ink prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-charcoal prose-p:leading-relaxed prose-li:text-charcoal prose-ul:my-4 space-y-6">
+          <p>
+            Cooking involves inherent risks. By using {SITE.name} (&quot;the
+            Service&quot;), you acknowledge that you have read and understood
+            this disclaimer and agree to cook at your own risk. If you do not
+            agree, please do not use our recipes.
+          </p>
+
+          <h2>1. Allergen Awareness</h2>
+          <p>
+            Our recipes may contain or come into contact with common allergens
+            including, but not limited to:
+          </p>
+          <ul>
+            <li>Soy (soy sauce, tofu, soy milk)</li>
+            <li>Wheat and gluten (noodles, soy sauce, flour)</li>
+            <li>Shellfish and fish (oyster sauce, shrimp paste, fish sauce)</li>
+            <li>Tree nuts and peanuts (peanut oil, sesame paste)</li>
+            <li>Eggs</li>
+            <li>Sesame (sesame oil, sesame seeds)</li>
+          </ul>
+          <p>
+            <strong>It is your responsibility</strong> to check every ingredient
+            label for allergen information. Manufacturers may change
+            formulations without notice. If you have a severe food allergy, we
+            recommend consulting the ingredient manufacturer directly and
+            discussing dietary changes with a qualified healthcare provider
+            before preparing any recipe from this site.
+          </p>
+
+          <h2>2. Cooking Safety</h2>
+          <p>
+            Chinese cooking techniques often involve high heat, hot oil, and
+            sharp tools. Please observe the following safety practices:
+          </p>
+          <ul>
+            <li>
+              <strong>Hot oil:</strong> Never leave heating oil unattended. Keep
+              a lid or fire blanket nearby. Water on an oil fire will cause a
+              dangerous flare-up — use a lid, baking soda, or a Class B fire
+              extinguisher instead.
+            </li>
+            <li>
+              <strong>Wok safety:</strong> Ensure woks are stable on your
+              cooktop. Round-bottom woks require a wok ring on gas stoves and
+              are not suitable for glass-top electric or induction stoves.
+            </li>
+            <li>
+              <strong>Knife safety:</strong> Chinese cleavers are sharp
+              instruments. Always use a stable cutting board, curl your fingers
+              when chopping, and keep blades sharp (a dull knife is more
+              dangerous than a sharp one).
+            </li>
+            <li>
+              <strong>Cross-contamination:</strong> Wash hands, utensils, and
+              surfaces after handling raw meat, poultry, seafood, and eggs. Use
+              separate cutting boards for raw proteins and ready-to-eat foods.
+            </li>
+            <li>
+              <strong>Internal temperatures:</strong> Use a food thermometer.
+              Poultry should reach 74°C (165°F), ground meats 71°C (160°F), and
+              fish 63°C (145°F).
+            </li>
+          </ul>
+
+          <h2>3. AI Limitations</h2>
+          <p>
+            {SITE.name} uses artificial intelligence (Anthropic Claude) to
+            generate ingredient substitutions, recipe adaptations, and cooking
+            suggestions. Please be aware of the following:
+          </p>
+          <ul>
+            <li>
+              AI-generated content may contain errors or omissions. We review
+              our AI output, but we cannot guarantee its accuracy or
+              completeness.
+            </li>
+            <li>
+              AI-suggested ingredient swaps are based on flavor profile
+              similarity, not nutritional equivalence. If you have dietary
+              restrictions or health conditions, verify substitutions with a
+              qualified professional.
+            </li>
+            <li>
+              Cooking times and temperatures generated by AI are estimates.
+              Always verify doneness with a thermometer rather than relying
+              solely on stated times.
+            </li>
+            <li>
+              AI systems may not be aware of rare or recently discovered food
+              interactions. Always exercise your own judgment.
+            </li>
+          </ul>
+          <p>
+            Our AI features are tools to assist and inspire — not a substitute
+            for your own cooking knowledge, common sense, or professional
+            dietary advice.
+          </p>
+
+          <h2>4. Liability Waiver</h2>
+          <p>To the fullest extent permitted by applicable law:</p>
+          <ul>
+            <li>
+              {SITE.name}, its owners, employees, and contributors disclaim all
+              liability for any injury, illness, allergic reaction, death, or
+              property damage resulting from the use of recipes, techniques, or
+              information provided on this website.
+            </li>
+            <li>
+              Recipes are provided &quot;as is&quot; without warranty of any
+              kind, express or implied, including but not limited to warranties
+              of food safety, nutritional accuracy, or suitability for any
+              particular dietary need.
+            </li>
+            <li>
+              You assume full responsibility for verifying ingredient safety,
+              cooking food to safe temperatures, and accommodating your own
+              dietary requirements and allergies.
+            </li>
+            <li>
+              We are not responsible for the content, safety, or quality of
+              third-party products linked or recommended on this site (including
+              Amazon affiliate links).
+            </li>
+          </ul>
+
+          <h2>5. Contact</h2>
+          <p>
+            If you have questions about this disclaimer or wish to report a
+            potential safety issue with a recipe, please contact us at:
+          </p>
+          <p>
+            Email:{" "}
+            <a
+              href={`mailto:${SITE.email}`}
+              className="text-azure underline"
+            >
+              {SITE.email}
+            </a>
+          </p>
+          <p>
+            By using {SITE.name}, you confirm that you have read, understood,
+            and agree to this disclaimer in full.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

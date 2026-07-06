@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans leading-relaxed;
+  }
+
+  ::selection {
+    @apply bg-terracotta-light text-terracotta;
+  }
+}
+
+@layer components {
+  .prose-card {
+    @apply bg-white rounded-lg border border-border shadow-xs p-6;
+  }
+
+  .section-title {
+    @apply font-display text-2xl sm:text-3xl font-bold tracking-tight;
+  }
+
+  .ad-container {
+    @apply bg-muted rounded-lg border border-dashed border-border flex items-center justify-center min-h-[90px] text-xs text-stone uppercase tracking-widest;
+  }
+}

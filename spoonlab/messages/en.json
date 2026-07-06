@@ -1,0 +1,19 @@
+{
+  "common": {
+    "home": "Home",
+    "recipes": "Recipes",
+    "aiGenerator": "AI Generator",
+    "premium": "Premium",
+    "shop": "Shop",
+    "blog": "Tips & Guides",
+    "signIn": "Sign In",
+    "getStarted": "Get Started"
+  },
+  "home": {
+    "hero": {
+      "badge": "Now Cooking: Chinese Cuisine",
+      "title": "AI Chinese Recipes For Western Home Cooks",
+      "subtitle": "Authentic flavors, supermarket ingredients. Every recipe auto-adapts to your kitchen — no specialty store required."
+    }
+  }
+}

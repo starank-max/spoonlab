@@ -1,0 +1,172 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String         @id @default(cuid())
+  email           String         @unique
+  name            String?
+  image           String?
+  emailVerified   DateTime?
+  locale          String         @default("en")
+  measurement     String         @default("imperial")
+  supermarket     String?
+  dietaryProfile  Json?
+  subscriptionTier String        @default("free")
+  aiGenerationsUsed Int          @default(0)
+  aiGenerationsLimit Int         @default(3)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  favorites       Favorite[]
+  aiHistory       AIGeneration[]
+  customRecipes   CustomRecipe[]
+  accounts        Account[]
+  sessions        Session[]
+}
+
+model Account {
+  id              String  @id @default(cuid())
+  userId          String
+  type            String
+  provider        String
+  providerAccountId String
+  refresh_token   String?
+  access_token    String?
+  expires_at      Int?
+  token_type      String?
+  scope           String?
+  id_token        String?
+  session_state   String?
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Recipe {
+  id            String      @id @default(cuid())
+  slug          String      @unique
+  cuisine       String
+  category      String
+  title         Json
+  description   Json
+  heroImage     String
+  prepTime      Int
+  cookTime      Int
+  servings      Int
+  difficulty    String
+  nutrition     Json
+  isAIGenerated Boolean     @default(false)
+  isPublished   Boolean     @default(false)
+  tags          String[]
+  rating        Float       @default(0)
+  ratingCount   Int         @default(0)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  ingredients   Ingredient[]
+  steps         Step[]
+  favorites     Favorite[]
+}
+
+model Ingredient {
+  id             String  @id @default(cuid())
+  recipeId       String
+  recipe         Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  order          Int     @default(0)
+  name           String
+  amountImperial String
+  amountMetric   String
+  notes          String?
+  isSwappable    Boolean @default(true)
+  swapGroup      String?
+}
+
+model Step {
+  id           String  @id @default(cuid())
+  recipeId     String
+  recipe       Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  order        Int
+  instruction  Json
+  image        String?
+  timerMinutes Int?
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  recipeId  String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  @@unique([userId, recipeId])
+}
+
+model AIGeneration {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  input     Json
+  output    Json
+  createdAt DateTime @default(now())
+}
+
+model CustomRecipe {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title      String
+  content    Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model BlogPost {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  excerpt   String
+  content   String
+  category  String
+  image     String
+  readTime  Int
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model AffiliateProduct {
+  id       String  @id @default(cuid())
+  name     String
+  slug     String  @unique
+  category String
+  price    Float
+  image    String
+  link     String
+  rating   Float   @default(4.5)
+  active   Boolean @default(true)
+}
+
+model NewsletterSub {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
