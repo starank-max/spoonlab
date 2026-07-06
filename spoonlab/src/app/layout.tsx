@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "SpoonLab — AI-Powered Multi-Cuisine Recipes",
   description:
     "Authentic Chinese recipes adapted for Western home cooks. AI ingredient swaps, dual-unit measurements, and supermarket-friendly ingredients.",
-  metadataBase: new URL("https://spoonlab.com"),
+  metadataBase: new URL("https://spoonlab.app"),
   openGraph: {
     title: "SpoonLab — Cook Smarter, Taste Further",
     description:

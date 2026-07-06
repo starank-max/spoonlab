@@ -25,7 +25,7 @@ export default function TermsPage() {
         </section>
         <section>
           <h2 className="font-display text-xl font-bold mb-3">5. Contact</h2>
-          <p>Questions about these Terms? Email <strong>legal@spoonlab.com</strong>.</p>
+          <p>Questions about these Terms? Email <strong>legal@spoonlab.app</strong>.</p>
         </section>
       </div>
     </div>

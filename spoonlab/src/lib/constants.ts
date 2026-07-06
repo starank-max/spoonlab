@@ -1,8 +1,8 @@
 export const SITE = {
   name: "SpoonLab",
   tagline: "Cook Smarter, Taste Further.",
-  domain: "spoonlab.com",
-  email: "hello@spoonlab.com",
+  domain: "spoonlab.app",
+  email: "hello@spoonlab.app",
   social: {
     instagram: "@spoonlab",
     tiktok: "@spoonlab",

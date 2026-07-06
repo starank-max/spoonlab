@@ -26,7 +26,7 @@ export default function CookiePolicyPage() {
         </section>
         <section>
           <h2 className="font-display text-xl font-bold mb-3">Contact</h2>
-          <p>Questions? Email <strong>privacy@spoonlab.com</strong>.</p>
+          <p>Questions? Email <strong>privacy@spoonlab.app</strong>.</p>
         </section>
       </div>
     </div>
