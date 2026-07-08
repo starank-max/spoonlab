@@ -176,6 +176,8 @@ export default function RecipeDetailPage({
   const recipe = RECIPE; // production: DB fetch by slug
   const heroImg = recipeCard?.heroImage ?? "/images/recipes/01-cashew-chicken/step-06.png";
   const imgFolder = recipeCard?.imageFolder ?? "01-cashew-chicken";
+  const maxSteps = recipeCard?.stepCount ?? 6;
+  const visibleSteps = recipe.steps.filter((s) => s.order <= maxSteps);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
@@ -310,7 +312,7 @@ export default function RecipeDetailPage({
         <div>
           <h3 className="font-display text-lg font-bold mb-4">Method</h3>
           <div className="space-y-4">
-            {recipe.steps.map((step, i) => (
+            {visibleSteps.map((step, i) => (
               <div key={step.order}>
                 {/* Step card */}
                 <div className="bg-white rounded-lg border border-border shadow-xs overflow-hidden hover:shadow-sm transition-shadow">
