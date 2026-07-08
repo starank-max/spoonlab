@@ -161,10 +161,6 @@ const RECIPE = {
   ],
 };
 
-const RELATED_RECIPES = MOCK_RECIPES.filter(
-  (r) => r.slug !== "kung-pao-chicken",
-).slice(0, 4);
-
 /* ──────────────── Component ──────────────── */
 
 export default function RecipeDetailPage({
@@ -178,6 +174,9 @@ export default function RecipeDetailPage({
   const imgFolder = recipeCard?.imageFolder ?? "01-cashew-chicken";
   const maxSteps = recipeCard?.stepCount ?? 6;
   const visibleSteps = recipe.steps.filter((s) => s.order <= maxSteps);
+  const RELATED_RECIPES = MOCK_RECIPES.filter(
+    (r) => r.slug !== (recipeCard?.slug ?? "kung-pao-chicken"),
+  ).slice(0, 4);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
@@ -186,8 +185,8 @@ export default function RecipeDetailPage({
         items={[
           { label: "Home", href: "/" },
           { label: "Chinese Recipes", href: "/chinese" },
-          { label: recipe.category, href: `/chinese/${recipe.category}` },
-          { label: recipe.title.en },
+          { label: recipeCard?.category ?? recipe.category, href: `/chinese/${recipeCard?.category ?? recipe.category}` },
+          { label: recipeCard?.title.en ?? recipe.title.en },
         ]}
         className="mb-5"
       />
@@ -196,10 +195,10 @@ export default function RecipeDetailPage({
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
         <div>
           <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-2">
-            {recipe.title.en}
+            {recipeCard?.title.en ?? recipe.title.en}
           </h1>
           <p className="text-stone text-sm sm:text-base max-w-xl leading-relaxed">
-            {recipe.description.en}
+            {recipeCard?.title.en ? `A quick ${recipeCard.totalTime}-minute Chinese home-cooking classic — adapted for Western supermarkets with everyday ingredients.` : recipe.description.en}
           </p>
 
           {/* Meta pills */}
@@ -213,8 +212,8 @@ export default function RecipeDetailPage({
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted text-xs font-semibold text-charcoal">
               🍽️ Serves {recipe.servings}
             </span>
-            <Badge variant={recipe.tags[0]?.toLowerCase().includes("spicy") ? "spicy" : recipe.tags[0]?.toLowerCase().includes("sweet") ? "sweet" : "default"}>🌶️ {recipe.tags[0]}</Badge>
-            <Badge variant={recipe.difficulty === "easy" ? "easy" : recipe.difficulty === "medium" ? "medium" : "hard"}>● {recipe.difficulty}</Badge>
+            <Badge variant={(recipeCard?.tags[0] ?? recipe.tags[0])?.toLowerCase().includes("spicy") ? "spicy" : (recipeCard?.tags[0] ?? recipe.tags[0])?.toLowerCase().includes("sweet") ? "sweet" : "default"}>🌶️ {recipeCard?.tags[0] ?? recipe.tags[0]}</Badge>
+            <Badge variant={(recipeCard?.difficulty ?? recipe.difficulty) === "easy" ? "easy" : (recipeCard?.difficulty ?? recipe.difficulty) === "medium" ? "medium" : "hard"}>● {recipeCard?.difficulty ?? recipe.difficulty}</Badge>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-saffron-light text-[#8B6914] text-xs font-semibold">
               ⚡ {recipe.nutrition.calories} kcal
             </span>
