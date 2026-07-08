@@ -96,9 +96,9 @@ export default function ChineseRecipesPage() {
               href={`/chinese/recipe/${r.slug}`}
               className="group bg-white rounded-lg overflow-hidden border border-border shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200"
             >
-              <CardImage className={BG_GRADIENTS[i]}>
-                <span>{EMOJIS[i]}</span>
-              </CardImage>
+              <div className="aspect-[4/3] overflow-hidden rounded-t-lg">
+                <img src={r.heroImage} alt={r.title.en} className="w-full h-full object-cover" />
+              </div>
               <div className="p-3.5">
                 <h4 className="font-semibold text-sm mb-1">{r.title.en}</h4>
                 <div className="flex items-center gap-3 text-xs text-stone">

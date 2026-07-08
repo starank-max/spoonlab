@@ -172,7 +172,10 @@ export default function RecipeDetailPage({
 }: {
   params: { slug: string };
 }) {
-  const recipe = RECIPE; // In production: fetch by params.slug
+  const recipeCard = MOCK_RECIPES.find((r) => r.slug === params.slug);
+  const recipe = RECIPE; // production: DB fetch by slug
+  const heroImg = recipeCard?.heroImage ?? "/images/recipes/01-cashew-chicken/step-06.png";
+  const imgFolder = recipeCard?.imageFolder ?? "01-cashew-chicken";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
@@ -231,8 +234,8 @@ export default function RecipeDetailPage({
       </div>
 
       {/* ── Hero Image ── */}
-      <div className="aspect-[21/9] rounded-xl overflow-hidden bg-gradient-to-br from-[#F3EAE0] via-[#E8D8C4] to-[#DDCBAD] flex items-center justify-center text-7xl sm:text-8xl shadow-md mb-8">
-        🍗
+      <div className="aspect-[21/9] rounded-xl overflow-hidden shadow-md mb-8">
+        <img src={heroImg} alt={recipe.title.en} className="w-full h-full object-cover" />
       </div>
 
       {/* ── 3-Column Layout ── */}
@@ -311,8 +314,12 @@ export default function RecipeDetailPage({
               <div key={step.order}>
                 {/* Step card */}
                 <div className="bg-white rounded-lg border border-border shadow-xs overflow-hidden hover:shadow-sm transition-shadow">
-                  <div className="aspect-[16/9] bg-gradient-to-br from-[#F5EFE6] via-[#EBE0D2] to-[#E0D2BC] flex items-center justify-center text-3xl">
-                    {["🧅", "🥣", "🔥", "🌶️", "🥜", "🍽️"][i]}
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img
+                      src={`/images/recipes/${imgFolder}/step-${String(step.order).padStart(2,"0")}.png`}
+                      alt={`Step ${step.order}`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="p-4 flex gap-3">
                     <span className="w-8 h-8 rounded-full bg-terracotta-light text-terracotta flex items-center justify-center text-sm font-bold flex-shrink-0">
@@ -436,8 +443,8 @@ export default function RecipeDetailPage({
               href={`/chinese/recipe/${r.slug}`}
               className="group bg-white rounded-lg overflow-hidden border border-border shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200"
             >
-              <div className="aspect-[4/3] bg-gradient-to-br from-[#F3EDE6] via-[#E8DDD0] to-[#DDCFBD] flex items-center justify-center text-3xl">
-                {["🫘", "🥩", "🍜", "🥒"][i]}
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={r.heroImage} alt={r.title.en} className="w-full h-full object-cover" />
               </div>
               <div className="p-3.5">
                 <h4 className="font-semibold text-sm">{r.title.en}</h4>

@@ -101,10 +101,8 @@ export default function CategoryPage({
               href={`/chinese/recipe/${r.slug}`}
               className="group bg-white rounded-lg overflow-hidden border border-border shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200"
             >
-              <div
-                className={`aspect-[4/3] bg-gradient-to-br ${BG_GRADIENTS[i % BG_GRADIENTS.length]} flex items-center justify-center text-4xl relative`}
-              >
-                <span>🍽️</span>
+              <div className="aspect-[4/3] overflow-hidden relative">
+                <img src={r.heroImage} alt={r.title.en} className="w-full h-full object-cover" />
                 <span className="absolute top-2 left-2 bg-white/90 text-[10px] font-semibold px-2 py-0.5 rounded-full text-stone">
                   {r.tags[0]}
                 </span>
